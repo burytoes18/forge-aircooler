@@ -16,7 +16,7 @@ const SECTIONS = [
   {
     key: 'product_context' as const,
     label: 'Product Context',
-    description: 'What are you building, how it works, who it's for. The agent reads this to stay on-topic.',
+    description: 'What are you building, how it works, who it is for. The agent reads this to stay on-topic.',
   },
   {
     key: 'unknowns' as const,
