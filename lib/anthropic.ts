@@ -10,13 +10,13 @@ export function getAnthropic() {
   return new Anthropic({ apiKey: key });
 }
 
-export function webSearchTool(maxUses = 5) {
+export function webSearchTool(maxUses = 5): any {
   return {
-    type: 'web_search_20250305' as const,
+    type: 'web_search_20250305',
     name: 'web_search',
     max_uses: maxUses,
     user_location: {
-      type: 'approximate' as const,
+      type: 'approximate',
       city: process.env.USER_LOCATION_CITY || 'Bengaluru',
       region: process.env.USER_LOCATION_REGION || 'Karnataka',
       country: process.env.USER_LOCATION_COUNTRY || 'IN',
