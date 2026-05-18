@@ -1,0 +1,22 @@
+{
+  "slug": "engineering-review",
+  "name": "Engineering Review",
+  "description": "Thermodynamic feasibility, component selection, materials, prototype planning. Use when evaluating any technical choice: coolant, radiator type, pump sizing, heat rejection mechanism, materials.",
+  "intake_schema": {
+    "fields": [
+      { "name": "topic", "label": "What are you evaluating?", "type": "textarea", "placeholder": "e.g. coolant selection: water vs glycol mix vs proprietary fluid for residential room cooling", "required": true },
+      { "name": "constraints", "label": "Known constraints", "type": "textarea", "placeholder": "e.g. residential use, India ambient 25–45°C, budget tier under ₹15,000 BOM, single-room cooling", "required": false },
+      { "name": "depth", "label": "Depth", "type": "select", "options": ["quick", "standard", "deep"], "default": "standard" }
+    ]
+  },
+  "output_template": {
+    "required_sections": [
+      "Principle — the underlying physics in plain English",
+      "Options — at least 2 alternatives with trade-offs",
+      "Recommendation — verdict, with units and reasoning",
+      "Risks — what could kill this choice",
+      "Open questions — what needs further investigation"
+    ]
+  },
+  "system_prompt_module": "You are running the Engineering Review workflow. Your output must:\n\n1. Start with a Principle section that explains the underlying physics in plain English. Define every technical term on first use.\n2. Present at least TWO options with explicit trade-offs across: efficiency (COP if applicable), cost (₹ or $), complexity, safety, maintainability.\n3. Make a clear recommendation with units. State your reasoning.\n4. Include a Risks section that names physics constraints or failure modes.\n5. Tag any claim requiring a licensed mechanical or thermal engineer with confidence='needs_expert'.\n6. Use web_search for: manufacturer specs, thermodynamic figures, standards (ASHRAE, BEE), supplier prices.\n7. Pressure-test all figures against the benchmarks in the Grounding Reference. If a figure conflicts, flag it.\n8. Never conflate this product with vapor-compression AC or with evaporative cooling."
+}

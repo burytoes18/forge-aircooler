@@ -1,0 +1,24 @@
+{
+  "slug": "unit-economics",
+  "name": "Unit Economics",
+  "description": "BOM costing, COGS, pricing strategy, break-even, capex. Use for cost modeling, pricing decisions, financial sanity-checks.",
+  "intake_schema": {
+    "fields": [
+      { "name": "topic", "label": "What are you modeling?", "type": "textarea", "placeholder": "e.g. BOM cost target for residential single-room unit at ₹20,000 retail", "required": true },
+      { "name": "target_price", "label": "Target retail price (if known)", "type": "text", "placeholder": "e.g. ₹20,000 or $250", "required": false },
+      { "name": "volume", "label": "Production volume assumption", "type": "text", "placeholder": "e.g. 5,000 units/year MVP scale", "required": false },
+      { "name": "depth", "label": "Depth", "type": "select", "options": ["quick", "standard", "deep"], "default": "standard" }
+    ]
+  },
+  "output_template": {
+    "required_sections": [
+      "Verdict — feasibility at target price",
+      "BOM table — component, source-of-cost, MOQ assumption, unit cost, range",
+      "COGS breakdown — BOM + labor + overhead + tooling amortization",
+      "Margin analysis — gross margin at target price, sensitivity to BOM swings",
+      "Break-even — units and timeline",
+      "Risks — supply chain, MOQ, FX, tooling capex"
+    ]
+  },
+  "system_prompt_module": "You are running the Unit Economics workflow. Your output must:\n\n1. Build a BOM table with line items: radiator/heat exchanger, pump, fan, housing, controls, sensors, packaging. Every line needs: source-of-cost (with web_search where possible), MOQ assumption, unit cost, and a sensitivity range (low/high).\n2. Tag estimated costs as 'estimate' with rationale; tag costs requiring a supplier quote as 'needs_expert'.\n3. Build COGS from BOM + labor (₹/unit assumption) + overhead + tooling amortization over the stated volume.\n4. Show gross margin at the target price with a sensitivity table for ±20% BOM swings.\n5. Use web_search to verify benchmark prices for radiators, pumps, and fans from Indian/Chinese suppliers.\n6. Always include units. Never present a single cost figure without a range."
+}

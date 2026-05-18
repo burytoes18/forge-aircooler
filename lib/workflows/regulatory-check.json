@@ -1,0 +1,22 @@
+{
+  "slug": "regulatory-check",
+  "name": "Regulatory Check",
+  "description": "Certifications, compliance, patent landscape, safety standards. Use to scope what certifications apply and what professional sign-off is needed.",
+  "intake_schema": {
+    "fields": [
+      { "name": "topic", "label": "What are you checking?", "type": "textarea", "placeholder": "e.g. certifications needed to sell residential cooling units in India, freedom-to-operate on radiator-cooling concept", "required": true },
+      { "name": "markets", "label": "Target markets", "type": "text", "placeholder": "e.g. India primary, EU and US for export consideration", "required": false },
+      { "name": "depth", "label": "Depth", "type": "select", "options": ["quick", "standard", "deep"], "default": "standard" }
+    ]
+  },
+  "output_template": {
+    "required_sections": [
+      "Verdict — what definitely applies, what likely applies, what needs an expert",
+      "Certification checklist — table: requirement, applicable?, status, next step",
+      "Patent landscape — relevant filings, freedom-to-operate flags",
+      "Safety considerations — coolant handling, electrical, mechanical",
+      "Open questions — what only a licensed professional can confirm"
+    ]
+  },
+  "system_prompt_module": "You are running the Regulatory Check workflow. CRITICAL: You are NOT a lawyer and NOT a certification expert. Your output must:\n\n1. Produce a checklist table with columns: Requirement | Applicable? | Status | Next Step.\n2. Tag every definitive regulatory claim with confidence='needs_expert' and add the relevant licensed professional type (BIS-empanelled testing lab, patent attorney, certified compliance consultant).\n3. Cover at minimum for India: BEE star rating (BEE — Bureau of Energy Efficiency), BIS certification (BIS — Bureau of Indian Standards), Electrical Equipment Safety, Coolant Handling if non-water.\n4. For export: RoHS, WEEE, CE marking, UL listing — flag these but emphasize they are out-of-scope for v1 if India is primary.\n5. Patent landscape: use web_search on Google Patents for 'liquid coolant air cooler', 'radiator-based room cooler', 'chilled water residential cooling'. Flag freedom-to-operate concerns as 'needs_expert'.\n6. Never provide definitive legal or regulatory verdicts."
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "market-validation",
+  "name": "Market Validation",
+  "description": "Market sizing, competitive analysis, demand research, GTM. Use for TAM/SAM/SOM, competitor benchmarking, willingness-to-pay, channel research.",
+  "intake_schema": {
+    "fields": [
+      { "name": "topic", "label": "What are you researching?", "type": "textarea", "placeholder": "e.g. residential cooling market in tier-2 Indian cities, alternative-AC segment", "required": true },
+      { "name": "geography", "label": "Geography focus", "type": "text", "placeholder": "e.g. India, with optional comparison to SE Asia", "required": false },
+      { "name": "depth", "label": "Depth", "type": "select", "options": ["quick", "standard", "deep"], "default": "standard" }
+    ]
+  },
+  "output_template": {
+    "required_sections": [
+      "Market size — TAM/SAM/SOM with sources",
+      "Competitive landscape — table of comparable products",
+      "Demand signals — search trends, patent filings, VC activity",
+      "White space — gaps this product could fill",
+      "Risks — market barriers, behavioral resistance, distribution challenges"
+    ]
+  },
+  "system_prompt_module": "You are running the Market Validation workflow. Your output must:\n\n1. Provide TAM/SAM/SOM figures with verified sources where possible. Use web_search for market reports (CEAMA, EMAAR, IEA, BEE, IBEF), VC databases, and competitor pricing.\n2. Build a competitive landscape table comparing: standard split AC, evaporative cooler, portable AC, chiller systems, and this radiator-principle product. Columns: mechanism, cooling capacity, price range, energy use, installation complexity.\n3. Identify demand signals from search trends, patent filings, startup activity, recent VC investments.\n4. Be brutally honest about market barriers — entrenched AC habits, retailer relationships, brand trust, monsoon humidity affecting evaporative-adjacent products.\n5. Never inflate market size to make the opportunity look bigger."
+}

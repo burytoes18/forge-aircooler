@@ -1,0 +1,23 @@
+{
+  "slug": "manufacturing-sourcing",
+  "name": "Manufacturing & Sourcing",
+  "description": "Supplier research, contract manufacturing options, MOQ realities, tooling, lead times. Use to find vendors and pressure-test supply chain assumptions.",
+  "intake_schema": {
+    "fields": [
+      { "name": "topic", "label": "What are you sourcing?", "type": "textarea", "placeholder": "e.g. aluminum fin-and-tube radiators in India, DC pump suppliers under 50W draw", "required": true },
+      { "name": "region", "label": "Sourcing region preference", "type": "select", "options": ["India primary", "China primary", "India then China", "Open"], "default": "India then China" },
+      { "name": "volume", "label": "Target volume", "type": "text", "placeholder": "e.g. 1,000 units for pilot, 10,000 units/year at scale", "required": false },
+      { "name": "depth", "label": "Depth", "type": "select", "options": ["quick", "standard", "deep"], "default": "standard" }
+    ]
+  },
+  "output_template": {
+    "required_sections": [
+      "Verdict — viable suppliers and key supply chain risks",
+      "Shortlist — table: supplier, location, capability, MOQ, lead time, source",
+      "MOQ and tooling — capex and minimum volumes by component",
+      "Lead times — typical and worst-case",
+      "Risks — single-source dependencies, FX, geopolitical, quality"
+    ]
+  },
+  "system_prompt_module": "You are running the Manufacturing & Sourcing workflow. Your output must:\n\n1. Produce a supplier shortlist table with: Supplier | Location | Capability | MOQ | Lead Time | Source URL.\n2. Use web_search to find real suppliers on IndiaMART, TradeIndia, Alibaba, Made-in-China. Verify each with a real URL.\n3. Tag any specific quoted price or MOQ as 'unverified' unless you have a real supplier-page citation, and explicitly note that supplier quotes are required for confirmation (tag 'needs_expert' — meaning needs a sourcing professional/quote).\n4. Flag single-source risks and components that require expensive tooling (extrusion dies, injection molds).\n5. Surface lead-time realities for hardware production cycles (typically 60–120 days for new tooling)."
+}
